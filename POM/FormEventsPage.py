@@ -9,17 +9,17 @@ from selenium.webdriver.support import expected_conditions as ec
 
 
 class FormEventsLocators:
-    fieldName = (By.ID, "g1103-name")
-    allTheItemNames = (By.CSS_SELECTOR, "#contact-form-1103 div.grunion-field-checkbox-multiple-wrap.grunion-field-wrap > div span")
-    allTheCheckboxes = (By.CSS_SELECTOR, "#contact-form-1103 div.grunion-field-checkbox-multiple-wrap.grunion-field-wrap > div > label> input")
+    fieldName = (By.ID, "name")
+    allTheItemNames = (By.XPATH, "//input[@name='fav_drink']")
+    allTheCheckboxes = (By.XPATH, "//input[contains(@type, 'checkbox')]")
     radioButtonNames = (By.CSS_SELECTOR, "#contact-form-1103 div.grunion-field-radio-wrap.grunion-field-wrap > div")
-    radioButtonList = (By.CSS_SELECTOR, "#contact-form-1103 div.grunion-field-radio-wrap.grunion-field-wrap label input")
-    dropdownSiblings = (By.CSS_SELECTOR, "#g1103-doyouhaveanysiblings-button")
-    optionsDropdown = (By.CSS_SELECTOR, "#g1103-doyouhaveanysiblings-menu > li")
+    radioButtonList = (By.XPATH, "//input[@name='fav_color']")
+    dropdownSiblings = (By.ID, "siblings")
+    listOptionsDropdown = (By.XPATH, "//option[contains(@data-cy, 'siblings')]")
     emailField = (By.ID, "email")
-    submitButton = (By.CSS_SELECTOR, "p.contact-submit:nth-child(2)>button.pushbutton-wide:nth-child(1)")
+    submitButton = (By.ID, "submit-btn")
     formCompleted = (By.ID, "contact-form-1103")
-    textBoxMessage = (By.ID, "contact-form-comment-message")
+    textBoxMessage = (By.ID, "message")
 
 
 class FormEventsPage:
@@ -32,13 +32,13 @@ class FormEventsPage:
 
     def selectOnlyOneItem(self, product):
         names = self.driver.find_elements(*FormEventsLocators.allTheItemNames)
-        n = 1
         for name in names:
-            if name.text == product:
+            if name.get_attribute("value") == product:
                 name.click()
-                print(name.text)
-                return self.driver.find_element(By.CSS_SELECTOR, "#contact-form-1103 div.grunion-field-checkbox-multiple-wrap.grunion-field-wrap label:nth-child(" + str(n) + ") > input").is_selected()
-            n = n+1
+                print(name.get_attribute("value"))
+                #return self.driver.find_element(By.XPATH, "//label[contains(text(),'"+name.get_attribute("value")+"')]").is_selected()
+                return self.driver.find_element(By.XPATH, "//input[@value='"+name.get_attribute("value")+"']").is_selected()
+
 
 
     def selectAllItems(self):
@@ -47,7 +47,9 @@ class FormEventsPage:
         list = []
         for checkbox in checkboxes:
             checkbox.click()
-            #print("Item"+str(n)+", está seleccionado:")
+            time.sleep(1)
+            #print(self.driver.find_element(By.XPATH, "//label[contains(@for,'drink"+str(n)+"')]").is_enabled())
+            print("Item"+str(n)+", está seleccionado")
             list.append(checkbox.is_selected())
             time.sleep(1)
             n = n+1
@@ -64,14 +66,15 @@ class FormEventsPage:
 
     def chooseOneOptionFromDropdown(self, opt):
         self.driver.find_element(*FormEventsLocators.dropdownSiblings).click()
-        options = self.driver.find_elements(*FormEventsLocators.optionsDropdown)
+        options = self.driver.find_elements(*FormEventsLocators.listOptionsDropdown)
         for option in options:
             if option.text == opt:
-                #print(option.text)
+                print(option.text)
                 option.click()
 
-    def verifyValueInDropdown(self):
-        return self.driver.find_element(*FormEventsLocators.dropdownSiblings).text
+    def verifyValueInDropdown(self, option):
+        #return self.driver.find_element(*FormEventsLocators.optionsDropdown).text
+        return self.driver.find_element(By.XPATH, "//option[contains(text(),'"+option+"')]").text
 
     def fillEmailField(self, email):
         self.driver.find_element(*FormEventsLocators.emailField).send_keys(email)
@@ -80,7 +83,11 @@ class FormEventsPage:
         self.driver.find_element(*FormEventsLocators.submitButton).click()
 
     def returnForm(self):
-        return self.driver.find_element(*FormEventsLocators.formCompleted).text
+        alert = self.driver.switch_to.alert
+        message = alert.text
+        alert.accept()
+        return message
+        #return self.driver.find_element(*FormEventsLocators.formCompleted).text
 
     def completeBoxMessage(self, message):
         self.driver.find_element(*FormEventsLocators.textBoxMessage).send_keys(message)

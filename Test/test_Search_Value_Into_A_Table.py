@@ -4,14 +4,12 @@ import unittest
 import sys
 import os
 sys.path.append(os.path.join(os.path.dirname(__file__),"..",".."))
-import HtmlTestRunner
 from Utils import Utils as Utils
 from Utils.BaseClass import BaseClass
 from POM.HomePage import HomePage
 from POM.TablesPage import TablesPage
 
 
-@pytest.mark.usefixtures("test_setup")
 class TestSearchValueIntoTable(BaseClass):
 
     def test_Search_A_Value_Into_Table(self):
@@ -19,7 +17,8 @@ class TestSearchValueIntoTable(BaseClass):
         driver = self.driver
         hp = HomePage(driver)
         time.sleep(1)
-        hp.closeCookiesWindows()
+        #hp.closeCookiesWindows()
+        driver.execute_script("window.scrollTo(0, 900)")
         time.sleep(1)
         hp.clickBtnTables()
         tp = TablesPage(driver)

@@ -28,10 +28,10 @@ class FileDownloadedPage:
         self.driver.find_element(*FileDownloadedLocators.downloadedWithOutPass).click()
 
     def verifyDownloadedFileNoPass(self):
-        while not os.path.exists('C:\\Users\\admin\\Downloads'):
+        while not os.path.exists('C:\\Users\\User\\Downloads'):
             time.sleep(3)
         # check file
-        if os.path.isfile('C:\\Users\\admin\\Downloads\\test.pdf'):
+        if os.path.isfile('C:\\Users\\User\\Downloads\\test.pdf'):
             time.sleep(2)
             print("File download is completed")
         else:
@@ -47,11 +47,11 @@ class FileDownloadedPage:
         self.driver.find_element(*FileDownloadedLocators.btnSubmit).click()
         time.sleep(3)
         self.driver.find_element(*FileDownloadedLocators.optionCloseModal).click()
-        while not os.path.exists('C:\\Users\\admin\\Downloads'):
+        while not os.path.exists('C:\\Users\\User\\Downloads'):
             time.sleep(4)
         # check file
         time.sleep(1)
-        if os.path.isfile('C:\\Users\\admin\\Downloads\\test.docx'):
+        if os.path.isfile('C:\\Users\\User\\Downloads\\test.docx'):
             time.sleep(2)
             print("File download is completed")
         else:

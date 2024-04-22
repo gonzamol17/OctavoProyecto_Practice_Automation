@@ -4,14 +4,12 @@ import unittest
 import sys
 import os
 sys.path.append(os.path.join(os.path.dirname(__file__),"..",".."))
-import HtmlTestRunner
 from Utils import Utils as Utils
 from Utils.BaseClass import BaseClass
 from POM.HomePage import HomePage
 from POM.TablesPage import TablesPage
 
 
-@pytest.mark.usefixtures("test_setup")
 class TestVerifyAllElementsFromTable(BaseClass):
 
     def test_Verify_All_Elements_From_Table(self):
@@ -19,14 +17,15 @@ class TestVerifyAllElementsFromTable(BaseClass):
         driver = self.driver
         hp = HomePage(driver)
         time.sleep(1)
-        hp.closeCookiesWindows()
+        #hp.closeCookiesWindows()
+        driver.execute_script("window.scrollTo(0, 900)")
         time.sleep(1)
         hp.clickBtnTables()
         tp = TablesPage(driver)
         time.sleep(2)
         items = tp.getAllValuesFromTable()
         #print(items)
-        listitems = ['Marbless', 'Oranges', 'Laptop']
+        listitems = ['Marbles', 'Oranges', 'Laptop']
         #el siguiente llamado es para comparar dos listas que tienen el mismo numero de elementos y
         #el mismo orden, solo sirve para ese caso, si están desordenados no va a funcionar
         #aux = tp.verifyEqualsList(items, listitems)

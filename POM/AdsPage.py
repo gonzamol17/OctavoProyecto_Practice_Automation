@@ -11,7 +11,7 @@ from selenium.webdriver.support import expected_conditions as ec
 class AdsLocators:
     valueMsg = (By.CSS_SELECTOR, "#post-1274 > div > p")
     popup = (By.CSS_SELECTOR, "#popmake-1272 > button")
-    textFromPopUp = (By.CSS_SELECTOR, "#post-1274 > div > p")
+    textFromPopUp = (By.XPATH, "//p[contains(text(),'Please make sure that')]")
 
 
 class AdsPage:
@@ -26,6 +26,7 @@ class AdsPage:
         element = WebDriverWait(self.driver, 20).until(ec.presence_of_element_located((By.CSS_SELECTOR, "#popmake-1272 > button")))
         element.click()
         return self.driver.find_element(*AdsLocators.textFromPopUp).text
+
 
 
 

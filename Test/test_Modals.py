@@ -1,7 +1,6 @@
 import time
 import pytest
 import unittest
-import HtmlTestRunner
 from Utils import Utils as Utils
 from Utils.BaseClass import BaseClass
 from POM.HomePage import HomePage
@@ -11,14 +10,14 @@ import os
 sys.path.append(os.path.join(os.path.dirname(__file__),"..",".."))
 
 
-@pytest.mark.usefixtures("test_setup")
 class TestModals(BaseClass):
 
     def test_Modals(self):
         log = self.get_Logger()
         driver = self.driver
         hp = HomePage(driver)
-        hp.closeCookiesWindows()
+        #hp.closeCookiesWindows()
+        driver.execute_script("window.scrollTo(0, 700)")
         time.sleep(1)
         hp.clickBtnModals()
         time.sleep(1)

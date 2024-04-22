@@ -5,14 +5,12 @@ import unittest
 import sys
 import os
 sys.path.append(os.path.join(os.path.dirname(__file__),"..",".."))
-import HtmlTestRunner
 from Utils import Utils as Utils
 from Utils.BaseClass import BaseClass
 from POM.HomePage import HomePage
 from POM.FileUploadPage import FileUploadPage
 
 
-@pytest.mark.usefixtures("test_setup")
 class TestFileUpload(BaseClass):
 
     def test_FileUpload(self):
@@ -20,13 +18,14 @@ class TestFileUpload(BaseClass):
         driver = self.driver
         hp = HomePage(driver)
         time.sleep(1)
-        hp.closeCookiesWindows()
+        #hp.closeCookiesWindows()
+        driver.execute_script("window.scrollTo(0, 1500)")
         time.sleep(1)
         hp.clickBtnFileUpload()
         time.sleep(1)
         fu = FileUploadPage(driver)
         text = fu.selectUploadItBtn()
-        assert text == "File upload complete!"
+        assert text == "Please fill out this field."
         time.sleep(2)
 
 

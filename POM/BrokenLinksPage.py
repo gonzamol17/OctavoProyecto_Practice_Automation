@@ -9,7 +9,7 @@ from selenium.webdriver.support import expected_conditions as ec
 
 
 class BrokenLinksLocators:
-    hyperlinkBrokenLink = (By.CSS_SELECTOR, "#post-1267 > div > p:nth-child(2) > a")
+    hyperlinkBrokenLink = (By.XPATH, "//a[contains(text(),'broken link')]")
 
 
 class BrokenLinksPage:

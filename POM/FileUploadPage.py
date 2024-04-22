@@ -10,8 +10,8 @@ from selenium.webdriver.support import expected_conditions as ec
 
 
 class FileUploadLocators:
-    btnUploadIt = (By.CSS_SELECTOR, "#wpcf7-f6157-p1037-o1 p:nth-child(2) > input")
-    txtMessage = (By.CSS_SELECTOR, "#wpcf7-f6157-p1037-o1 > form > div.wpcf7-response-output")
+    btnUploadIt = (By.XPATH, "//input[@id='upload-btn']")
+    txtMessage = (By.XPATH, "//span[contains(text(),'Please fill out this field.')]")
 
 
 class FileUploadPage:

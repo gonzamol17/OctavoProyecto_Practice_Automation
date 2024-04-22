@@ -1,7 +1,6 @@
 import time
 import pytest
 import unittest
-import HtmlTestRunner
 from Utils import Utils as Utils
 from Utils.BaseClass import BaseClass
 from POM.HomePage import HomePage
@@ -11,7 +10,6 @@ import os
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 
 
-@pytest.mark.usefixtures("test_setup")
 class TestWindowOperationsNewWindow(BaseClass):
 
     def test_WindowOperations_New_Window(self):
@@ -19,9 +17,9 @@ class TestWindowOperationsNewWindow(BaseClass):
         driver = self.driver
         hp = HomePage(driver)
         time.sleep(1)
-        hp.closeCookiesWindows()
+        #hp.closeCookiesWindows()
         time.sleep(1)
-        driver.execute_script("window.scrollTo(0, 300)")
+        driver.execute_script("window.scrollTo(0, 1200)")
         time.sleep(1)
         hp.clickBtnWindowOperations()
         wo = WindowOperationsPage(driver)

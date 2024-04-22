@@ -4,14 +4,12 @@ import unittest
 import sys
 import os
 sys.path.append(os.path.join(os.path.dirname(__file__),"..",".."))
-import HtmlTestRunner
 from Utils import Utils as Utils
 from Utils.BaseClass import BaseClass
 from POM.HomePage import HomePage
 from POM.FormEventsPage import FormEventsPage
 
 
-@pytest.mark.usefixtures("test_setup")
 class TestFormEventsCompleteAndSendForm(BaseClass):
 
     def test_FormEvents_CompleteAndSendForm(self):
@@ -19,7 +17,7 @@ class TestFormEventsCompleteAndSendForm(BaseClass):
         driver = self.driver
         hp = HomePage(driver)
         time.sleep(1)
-        hp.closeCookiesWindows()
+        #hp.closeCookiesWindows()
         time.sleep(1)
         driver.execute_script("window.scrollTo(0, 200)")
         time.sleep(1)
@@ -40,14 +38,16 @@ class TestFormEventsCompleteAndSendForm(BaseClass):
         time.sleep(1)
         color = "Green"
         isSelected = fe.showRadioButtonSection(color)
+        time.sleep(3)
+        print(isSelected)
         assert isSelected is True
         # para elegir el color
         time.sleep(2)
-        driver.execute_script("window.scrollTo(0, 200)")
+        driver.execute_script("window.scrollTo(0, 400)")
         time.sleep(1)
         option = "Yes"
         fe.chooseOneOptionFromDropdown(option)
-        assert fe.verifyValueInDropdown() == option
+        assert fe.verifyValueInDropdown(option) == option
         time.sleep(1)
         driver.execute_script("window.scrollTo(0, 200)")
         time.sleep(2)
@@ -59,11 +59,12 @@ class TestFormEventsCompleteAndSendForm(BaseClass):
         message = "This is first content, that i fill in this box"
         fe.completeBoxMessage(message)
         time.sleep(1)
-        driver.execute_script("window.scrollTo(0, 900)")
-        time.sleep(2)
+        driver.execute_script("window.scrollTo(0, 2400)")
+        time.sleep(3)
         fe.sendForm()
         time.sleep(1)
-        print(fe.returnForm())
+        message = fe.returnForm()
+        assert message == "Message received!"
         time.sleep(2)
 
 
