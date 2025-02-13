@@ -1,13 +1,6 @@
 import time
-import os
 
-from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.support.select import Select
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as ec
-
 
 class FileUploadLocators:
     btnUploadIt = (By.XPATH, "//input[@id='upload-btn']")
