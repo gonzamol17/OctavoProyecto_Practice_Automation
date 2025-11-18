@@ -27,7 +27,7 @@ class TablesPage:
     def searchAValueIntoAFromTables(self, search):
         rows = self.driver.find_elements(*TablesLocators.simpleTable)
         aux = 1
-        aux1 = 1
+        #aux1 = 1
         n = 2
         for row in rows:
             if aux != 1:
