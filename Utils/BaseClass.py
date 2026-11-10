@@ -1,8 +1,7 @@
 import inspect
+import os
+
 import pytest
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 import logging
 
 #ver si en esta clase base esta anotación de pytest.mark va también, porque ya la estamos usando en la clase
@@ -14,11 +13,11 @@ class BaseClass:
     def get_Logger(self):
         loggername = inspect.stack()[1][3]
         logger = logging.getLogger(loggername)
-        fileHandler = logging.FileHandler("..\\Data\\logfile.log")
+        log_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "Logs", "logfile.log")
+        os.makedirs(os.path.dirname(log_path), exist_ok=True)
+        fileHandler = logging.FileHandler(log_path, encoding="utf-8")
         formatter = logging.Formatter("%(asctime)s :%(levelname)s : %(name)s :%(message)s")
         fileHandler.setFormatter(formatter)
         logger.addHandler(fileHandler)
-        #logger = logging.FileHandler(filemode='w')
         logger.setLevel(logging.DEBUG)
         return logger
-

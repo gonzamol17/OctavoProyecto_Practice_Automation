@@ -7,9 +7,9 @@ from selenium.webdriver.support.select import Select
 
 
 class WindowOperationsLocators:
-    btnNewTab = (By.CSS_SELECTOR, "#post-1147 > div > p:nth-child(2) > button")
-    btnReplaceWindow = (By.CSS_SELECTOR, "#post-1147 > div > p:nth-child(4) > button")
-    btnNewWindow = (By.CSS_SELECTOR, "#post-1147 > div > p:nth-child(6) > button")
+    btnNewTab = (By.CSS_SELECTOR, "button[onclick='newTab()']")
+    btnReplaceWindow = (By.CSS_SELECTOR, "button[onclick='newWindowSelf()']")
+    btnNewWindow = (By.CSS_SELECTOR, "button[onclick='newWindow()']")
 
 
 
@@ -61,6 +61,7 @@ class WindowOperationsPage:
             if handle != original_handle:
                 self.driver.switch_to.window(handle)
                 if self.driver.current_url == "https://automatenow.io/":
+                    assert self.driver.current_url == "https://automatenow.io/"
                     print(self.driver.current_url)
                     self.driver.close()
         self.driver.switch_to.window(original_handle)

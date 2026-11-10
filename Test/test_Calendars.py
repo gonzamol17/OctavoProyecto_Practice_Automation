@@ -4,7 +4,7 @@ import unittest
 import sys
 import os
 sys.path.append(os.path.join(os.path.dirname(__file__),"..",".."))
-from Utils import Utils as Utils
+from Utils import utils as Utils
 from Utils.BaseClass import BaseClass
 from POM.HomePage import HomePage
 from POM.CalendarPage import CalendarsPage
@@ -27,7 +27,7 @@ class TestCalendars(BaseClass):
         time.sleep(1)
         month = "September"
         monthalias = "09"
-        year = "2024"
+        year = "2025"
         cl.verifyMonthAndYear(month, year)
         time.sleep(1)
         day = "4"

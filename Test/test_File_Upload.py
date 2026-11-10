@@ -5,7 +5,7 @@ import unittest
 import sys
 import os
 sys.path.append(os.path.join(os.path.dirname(__file__),"..",".."))
-from Utils import Utils as Utils
+from Utils import utils as Utils
 from Utils.BaseClass import BaseClass
 from POM.HomePage import HomePage
 from POM.FileUploadPage import FileUploadPage

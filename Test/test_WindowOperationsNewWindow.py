@@ -1,7 +1,7 @@
 import time
 import pytest
 import unittest
-from Utils import Utils as Utils
+from Utils import utils as Utils
 from Utils.BaseClass import BaseClass
 from POM.HomePage import HomePage
 from POM.WindowOperationsPage import WindowOperationsPage

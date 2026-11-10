@@ -16,7 +16,7 @@ class TablesLocators:
     populationSortableTable = (By.CSS_SELECTOR, "#tablepress-1 > tbody > tr > td.column-3")
     rowTable = (By.CSS_SELECTOR, "#tablepress-1 > tbody > tr")
     columnTable = (By.CSS_SELECTOR, "#tablepress-1 > thead > tr > th")
-    searchBar = (By.CSS_SELECTOR, "#tablepress-1_filter > label > input[type=search]")
+    searchBar = (By.CSS_SELECTOR, "input#dt-search-0")
 
 
 class TablesPage:
@@ -129,5 +129,5 @@ class TablesPage:
             if country in aux:
                 countries.append(aux)
             n = n+1
-            print("Aca llegó")
+            #print("Aca llegó")
         return countries

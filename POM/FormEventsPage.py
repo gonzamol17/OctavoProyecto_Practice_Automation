@@ -9,13 +9,13 @@ from selenium.webdriver.support import expected_conditions as ec
 
 
 class FormEventsLocators:
-    fieldName = (By.ID, "name")
+    fieldName = (By.ID, "name-input")
     allTheItemNames = (By.XPATH, "//input[@name='fav_drink']")
     allTheCheckboxes = (By.XPATH, "//input[contains(@type, 'checkbox')]")
     radioButtonNames = (By.CSS_SELECTOR, "#contact-form-1103 div.grunion-field-radio-wrap.grunion-field-wrap > div")
     radioButtonList = (By.XPATH, "//input[@name='fav_color']")
-    dropdownSiblings = (By.ID, "siblings")
-    listOptionsDropdown = (By.XPATH, "//option[contains(@data-cy, 'siblings')]")
+    dropdownSiblings = (By.ID, "automation")
+    listOptionsDropdown = (By.XPATH, "//option[contains(@data-cy, 'automation')]")
     emailField = (By.ID, "email")
     submitButton = (By.ID, "submit-btn")
     formCompleted = (By.ID, "contact-form-1103")
@@ -38,7 +38,7 @@ class FormEventsPage:
                 print(name.get_attribute("value"))
                 #return self.driver.find_element(By.XPATH, "//label[contains(text(),'"+name.get_attribute("value")+"')]").is_selected()
                 return self.driver.find_element(By.XPATH, "//input[@value='"+name.get_attribute("value")+"']").is_selected()
-
+        return False
 
 
     def selectAllItems(self):

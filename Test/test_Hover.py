@@ -1,7 +1,7 @@
 import time
 import pytest
 import unittest
-from Utils import Utils as Utils
+from Utils import utils as Utils
 from Utils.BaseClass import BaseClass
 from POM.HomePage import HomePage
 from POM.HoverPage import HoverPage
@@ -9,11 +9,12 @@ import sys
 import os
 sys.path.append(os.path.join(os.path.dirname(__file__),"..",".."))
 
-
+@pytest.mark.report
 class TestHover(BaseClass):
 
     def test_Hover(self):
         log = self.get_Logger()
+        log.info("Está entrando a la página")
         driver = self.driver
         hp = HomePage(driver)
         #hp.closeCookiesWindows()

@@ -9,10 +9,10 @@ from selenium.webdriver.support.select import Select
 
 class IframeLocators:
     iframeTitle = (By.CSS_SELECTOR, "#post-1129 > div > p:nth-child(1)")
-    iframe1 = (By.ID, "frame2")
-    iframe2 = (By.ID, "frame1")
-    popularSearch = (By.CSS_SELECTOR, "#natgeo-search-results div > ul > li > a")
-    glassIcon = (By.CSS_SELECTOR, "#fitt-analytics  ul > li:nth-child(2) > div")
+    iframe1 = (By.ID, "iframe-1")
+    iframe2 = (By.ID, "iframe-2")
+    popularSearch = (By.CSS_SELECTOR, "a.navbar__link")
+    glassIcon = (By.CSS_SELECTOR, "#__docusaurus span.DocSearch-Button-Container > span")
     headerItemIfrem2 = (By.CSS_SELECTOR, "#main_navbar > ul >  li")
 
 
@@ -28,6 +28,9 @@ class IframePage:
 
     def selectSearchIcon(self):
         self.driver.find_element(*IframeLocators.glassIcon).click()
+        time.sleep(1)
+        ActionChains(self.driver).send_keys(Keys.ESCAPE).perform()
+
 
     def getPopularSearchFristIframe(self):
         headers = self.driver.find_elements(*IframeLocators.popularSearch)

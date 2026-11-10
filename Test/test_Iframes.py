@@ -1,7 +1,7 @@
 import time
 import pytest
 import unittest
-from Utils import Utils as Utils
+from Utils import utils as Utils
 from Utils.BaseClass import BaseClass
 from POM.HomePage import HomePage
 from POM.IframePage import IframePage
@@ -25,11 +25,11 @@ class TestIframes(BaseClass):
         time.sleep(1)
         ifp = IframePage(driver)
         time.sleep(1)
-        time.sleep(1)
-        print(ifp.getTitle())
+        #print(ifp.getTitle())
         driver.switch_to.frame(ifp.getIframeOne())
         time.sleep(1)
         ifp.selectSearchIcon()
+        time.sleep(1)
         driver.execute_script("window.scrollTo(0, 150)")
         time.sleep(1)
         print("Elementos del Iframe 1:")

@@ -1,7 +1,7 @@
 import time
 import pytest
 import unittest
-from Utils import Utils as Utils
+from Utils import utils as Utils
 from Utils.BaseClass import BaseClass
 from POM.HomePage import HomePage
 from POM.ModalsPage import ModalsPage
@@ -9,7 +9,7 @@ import sys
 import os
 sys.path.append(os.path.join(os.path.dirname(__file__),"..",".."))
 
-
+@pytest.mark.report
 class TestModals(BaseClass):
 
     def test_Modals(self):
